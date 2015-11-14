@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="35dp"
+    android:orientation="horizontal"
+    android:background="@color/black" >
+    <ImageView 
+        android:id="@+id/capture_top_back"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_margin="5dp"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/btn_back_a"
+        />
+    <ImageView 
+        android:id="@+id/capture_top_switch_camera"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_margin="5dp"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/btn_switch_camera_a"/>
+    <ImageView 
+        android:id="@+id/capture_top_flash"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_margin="5dp"
+        android:layout_toLeftOf="@id/capture_top_switch_camera"
+        android:src="@drawable/ic_flash_close"/>
+	
+</RelativeLayout>
+<!-- From: file:/E:/AndroidStudioWorkPlace/MeiPai/app/src/main/res/layout/capture_top.xml -->

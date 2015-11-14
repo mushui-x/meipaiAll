@@ -1,0 +1,79 @@
+package com.gzw.mp.activities;
+
+import android.os.Handler;
+import android.os.Message;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
+
+import com.gzw.mp.R;
+import com.gzw.mp.base.BaseActivity;
+import com.gzw.mp.fragments.logInRegisterFragment.LogInFragment;
+import com.gzw.mp.fragments.logInRegisterFragment.RegisterFirstFragment;
+import com.gzw.mp.fragments.logInRegisterFragment.RegisterFragmentThird;
+import com.gzw.mp.fragments.logInRegisterFragment.RegisterSecondFragment;
+
+public class LogInRegisterActivity extends BaseActivity {
+
+    //当前显示的fragment的标识,默认为第一个登陆界面的fragment
+    private int whichFragmentFlag = 0;
+
+    private LogInFragment logInFragment;
+    private RegisterFirstFragment registerFirst;
+    private RegisterSecondFragment registerSecond;
+    private RegisterFragmentThird registerThird;
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_login_register;
+    }
+
+    //handler接收fragment发送的消息,并改变当前现实的fragment
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            Log.i("=Handler=",msg.what+"===");
+            switch (msg.what) {
+                case 0:
+
+                    break;
+                case 1:
+
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                default:
+                    break;
+            }
+
+        }
+    };
+
+    @Override
+    public void initView() {
+        logInFragment = new LogInFragment(handler);
+        registerFirst = new RegisterFirstFragment(handler);
+        registerSecond = new RegisterSecondFragment(handler);
+        registerThird = new RegisterFragmentThird();
+        //开启事物
+        FragmentManager manager = getSupportFragmentManager();
+       FragmentTransaction transaction = manager.beginTransaction();
+        transaction.add(R.id.frame_login, registerFirst);
+        transaction.add(R.id.frame_login, registerSecond);
+        transaction.add(R.id.frame_login, registerThird);
+        transaction.add(R.id.frame_login, logInFragment);
+        //添加到回退栈
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+
+    @Override
+    public void initAction() {
+        // APIUtils.getSMSUrl
+    }
+}

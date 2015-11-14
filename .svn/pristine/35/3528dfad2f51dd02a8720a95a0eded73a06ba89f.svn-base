@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background_floating_material_dark">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/login_title"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/phone_login_iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="11dp"
+            android:src="@drawable/ic_collapse_psd" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_toRightOf="@+id/phone_login_iv_back"
+            android:gravity="center_vertical"
+            android:text="返回 "
+            android:textColor="@color/user_textcolor"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/log_in_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/new_user_come"
+            android:textColor="@color/login_titletext"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+    <GridView
+        android:layout_weight="1"
+        android:id="@+id/gridView_newUserCome"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:horizontalSpacing="1dp"
+        android:numColumns="2"
+        android:columnWidth="100dp"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="0dp">
+    </GridView>
+</LinearLayout>

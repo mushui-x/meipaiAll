@@ -1,0 +1,45 @@
+package com.gzw.mp.fragments;
+
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+
+import com.gzw.mp.MyApplication;
+import com.gzw.mp.R;
+import com.gzw.mp.utils.LogInDialog;
+
+public class UserFragment extends Fragment implements View.OnClickListener {
+
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = View.inflate(getActivity(), R.layout.user_fragemnt, null);
+        initView(view);
+        return view;
+    }
+
+    //初始化界面
+    private void initView(View view) {
+        RelativeLayout ll_login = (RelativeLayout) view.findViewById(R.id.user__rl_login);
+        LinearLayout ll_draft = (LinearLayout) view.findViewById(R.id.user__ll_draft);
+        LinearLayout ll_findfrend = (LinearLayout) view.findViewById(R.id.user__ll_findfrend);
+        LinearLayout ll_mapattention = (LinearLayout) view.findViewById(R.id.user__ll_mapattention);
+        ll_login.setOnClickListener(this);
+        ll_draft.setOnClickListener(this);
+        ll_findfrend.setOnClickListener(this);
+        ll_mapattention.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (!MyApplication.loginFlag){
+            LogInDialog.showLogInDialog(getActivity());
+        }
+    }
+}

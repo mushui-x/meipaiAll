@@ -1,0 +1,209 @@
+package com.gzw.mp.activities;
+
+
+import android.content.Intent;
+import android.graphics.Color;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.gzw.mp.R;
+import com.gzw.mp.base.BaseActivity;
+import com.gzw.mp.fragments.FindFragment;
+import com.gzw.mp.fragments.FriendsFragment;
+import com.gzw.mp.fragments.HomeFragment;
+import com.gzw.mp.fragments.UserFragment;
+import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
+
+/**
+ * author Grrsun
+ */
+public class MainActivity extends BaseActivity {
+
+    private Fragment mHomeFragment;
+    private Fragment mFriendsFragment;
+    private Fragment mFindFragment;
+    private Fragment mUserFragment;
+
+    @ViewInject(R.id.tab_home_image)
+    ImageView mHomeImage;
+    @ViewInject(R.id.tab_friends_image)
+    ImageView mFriendsImage;
+    @ViewInject(R.id.tab_find_image)
+    ImageView mFindImage;
+    @ViewInject(R.id.tab_user_image)
+    ImageView mUserImage;
+
+    @ViewInject(R.id.tab_home_text)
+    TextView mHomeText;
+    @ViewInject(R.id.tab_friends_text)
+    TextView mFriendsText;
+    @ViewInject(R.id.tab_find_text)
+    TextView mFindText;
+    @ViewInject(R.id.tab_user_text)
+    TextView mUserText;
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    public void initView() {
+        // 打开应用时默认选中HomeFragment
+        select(0);
+    }
+
+    @Override
+    public void initAction() {
+
+    }
+
+    /**
+     * 点击底部Tab时转换Fragment
+     * @param v
+     */
+    @OnClick({R.id.tab_home, R.id.tab_friends, R.id.capture_video, R.id.tab_find, R.id.tab_user})
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tab_home:
+                select(0);
+                break;
+            case R.id.tab_friends:
+                select(1);
+                break;
+            case R.id.capture_video:
+                Intent intent = new Intent(this, CaptureVideoActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.tab_find:
+                select(2);
+                break;
+            case R.id.tab_user:
+                select(3);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    /**
+     * 选择Fragment
+     */
+    private void select(int position) {
+        // 获取FragmentManager对象
+        FragmentManager fm = getSupportFragmentManager();
+        // 获取事务
+        FragmentTransaction transaction = fm.beginTransaction();
+        // 隐藏事务
+        hideFragment(transaction);
+        // 根据传递过来的参数 选择显示对应的Fragment
+        switch (position) {
+            case 0:// HomeFragment
+                // 如果此Fragment为空 就新建一个
+                if (mHomeFragment == null) {
+                    mHomeFragment = new HomeFragment();
+                    transaction.add(R.id.tab_frame, mHomeFragment);
+                } else {// 此Fragment已经存在 直接显示
+                    transaction.show(mHomeFragment);
+                }
+                // 改变按下后图片和文字的状态
+                changeStatus(0);
+                break;
+            case 1:
+                if (mFriendsFragment == null) {
+                    mFriendsFragment = new FriendsFragment();
+                    transaction.add(R.id.tab_frame, mFriendsFragment);
+                } else {
+                    transaction.show(mFriendsFragment);
+                }
+                changeStatus(1);
+                break;
+            case 2:
+                if (mFindFragment == null) {
+                    mFindFragment = new FindFragment();
+                    transaction.add(R.id.tab_frame, mFindFragment);
+                } else {
+                    transaction.show(mFindFragment);
+                }
+                changeStatus(2);
+                break;
+            case 3:
+                if (mUserFragment == null) {
+                    mUserFragment = new UserFragment();
+                    transaction.add(R.id.tab_frame, mUserFragment);
+                } else {
+                    transaction.show(mUserFragment);
+                }
+                changeStatus(3);
+                break;
+
+            default:
+                break;
+        }
+        // 提交事务
+        transaction.commit();
+    }
+
+    private void changeStatus(int position) {
+
+        // 重置所有图片
+        mHomeImage.setImageResource(R.drawable.ic_tab_home_normal);
+        mFriendsImage.setImageResource(R.drawable.ic_tab_friends_a);
+        mFindImage.setImageResource(R.drawable.ic_tab_find_a);
+        mUserImage.setImageResource(R.drawable.ic_tab_user_normal);
+        // 重置所有文本的颜色
+        mHomeText.setTextColor(Color.WHITE);
+        mFriendsText.setTextColor(Color.WHITE);
+        mFindText.setTextColor(Color.WHITE);
+        mUserText.setTextColor(Color.WHITE);
+        // 改变对应图片和文本颜色
+        switch (position) {
+            case 0:
+                mHomeImage.setImageResource(R.drawable.ic_tab_home_press);
+                mHomeText.setTextColor(Color.parseColor("#FF1493"));
+                break;
+            case 1:
+                mFriendsImage.setImageResource(R.drawable.ic_tab_friends_b);
+                mFriendsText.setTextColor(Color.parseColor("#FF1493"));
+                break;
+            case 2:
+                mFindImage.setImageResource(R.drawable.ic_tab_find_b);
+                mFindText.setTextColor(Color.parseColor("#FF1493"));
+                break;
+            case 3:
+                mUserImage.setImageResource(R.drawable.ic_tab_user_press);
+                mUserText.setTextColor(Color.parseColor("#FF1493"));
+                break;
+
+            default:
+                break;
+        }
+
+    }
+
+    /**
+     * 转换到某个Fragment前先隐藏该页面
+     *
+     * @param transaction
+     */
+    private void hideFragment(FragmentTransaction transaction) {
+        if (mHomeFragment != null) {
+            transaction.hide(mHomeFragment);
+        }
+        if (mFriendsFragment != null) {
+            transaction.hide(mFriendsFragment);
+        }
+        if (mFindFragment != null) {
+            transaction.hide(mFindFragment);
+        }
+        if (mUserFragment != null) {
+            transaction.hide(mUserFragment);
+        }
+    }
+}

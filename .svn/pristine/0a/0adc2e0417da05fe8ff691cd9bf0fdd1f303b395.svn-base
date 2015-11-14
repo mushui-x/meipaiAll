@@ -1,0 +1,130 @@
+package com.gzw.mp.adapter;
+
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.gzw.mp.R;
+import com.gzw.mp.bean.TimeLineBean;
+import com.gzw.mp.utils.ImageLoadUtil;
+import com.gzw.mp.utils.LogUtil;
+import com.gzw.mp.view.RoundImageView;
+import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.view.annotation.ViewInject;
+
+import java.util.List;
+
+/**
+ * @author zhangjie
+ *         2015/11/10
+ *         zhangxiaomu.grr@gmail.com
+ */
+public class VideoShowBaseAdapter extends BaseAdapter {
+
+    private List<TimeLineBean> timeLineData;
+    private Context context;
+
+    public VideoShowBaseAdapter(Context context, List<TimeLineBean> timeLineData) {
+        this.context = context;
+        this.timeLineData = timeLineData;
+    }
+
+    @Override
+    public int getCount() {
+        return timeLineData.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return timeLineData.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder = null;
+        if (convertView == null) {
+            convertView = View.inflate(context, R.layout.video_single_show_layout, null);
+            holder = new ViewHolder(convertView);
+            convertView.setTag(holder);
+        } else {
+            holder = ((ViewHolder) convertView.getTag());
+        }
+        //单个视频信息
+        final TimeLineBean data = timeLineData.get(position);
+
+        //视频封面 缩略图
+        String corverUrl = data.getRecommend_cover_pic();
+        String captionText = data.getRecommend_caption().toString();
+        ImageLoadUtil.loadImage(corverUrl, holder.corver);
+
+        if (data.getType().equals("scheme")) {
+            // 如果遇到活动(scheme类) 隐藏头像 点赞数 视频描述
+            holder.caption.setVisibility(View.GONE);
+            holder.avatar.setVisibility(View.GONE);
+            holder.lickImage.setVisibility(View.GONE);
+            holder.likeCount.setVisibility(View.GONE);
+            //显示活动标题
+            holder.activityTitle.setVisibility(View.VISIBLE);
+            holder.activityTitle.setText(captionText);
+        }
+        if (data.getType().equals("media")) {
+            //media类
+            holder.caption.setVisibility(View.VISIBLE);
+            holder.avatar.setVisibility(View.VISIBLE);
+            holder.lickImage.setVisibility(View.VISIBLE);
+            holder.likeCount.setVisibility(View.VISIBLE);
+            holder.activityTitle.setVisibility(View.GONE);
+            //视频描述
+            holder.caption.setText(captionText);
+            //用户头像
+            String avatarUrl = data.getMedia().getUser().getAvatar();
+            //点赞数
+            int lickNum = data.getMedia().getLikes_count();
+            String lickNumStr = Integer.toString(lickNum);
+            LogUtil.i("---头像url", avatarUrl);
+            LogUtil.i("---点赞数", lickNumStr);
+            //填充头像
+            ImageLoadUtil.loadImage(avatarUrl, holder.avatar);
+            //填充点赞数
+            holder.likeCount.setText(lickNumStr);
+        }
+        return convertView;
+    }
+
+    /**
+     * 用注解方式写ViewHolder
+     */
+    static class ViewHolder {
+
+        //视频封面
+        @ViewInject(R.id.recommend_cover_pic)
+        ImageView corver;
+        //用户头像
+        @ViewInject(R.id.avatar)
+        RoundImageView avatar;
+        //标题
+        @ViewInject(R.id.recommend_caption)
+        TextView caption;
+        //点赞数前边的心形图片
+        @ViewInject(R.id.licks_image)
+        ImageView lickImage;
+        //点赞数
+        @ViewInject(R.id.likes_count)
+        TextView likeCount;
+        //活动标题
+        @ViewInject(R.id.activity)
+        TextView activityTitle;
+
+        public ViewHolder(View v) {
+            ViewUtils.inject(this, v);
+        }
+    }
+}

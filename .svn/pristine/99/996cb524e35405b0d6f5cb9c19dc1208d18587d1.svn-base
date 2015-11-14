@@ -1,0 +1,73 @@
+-- Merging decision tree log ---
+manifest
+ADDED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml:2:1-27:12
+	package
+		ADDED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml:3:5-25
+		INJECTED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml
+		INJECTED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml
+		INJECTED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml:2:11-69
+	android:versionCode
+		INJECTED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml
+		INJECTED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml
+uses-permission#android.permission.CAMERA
+ADDED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml:5:5-65
+	android:name
+		ADDED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml:5:22-62
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml:7:5-81
+	android:name
+		ADDED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml:7:22-78
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml:8:5-80
+	android:name
+		ADDED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml:8:22-77
+application
+ADDED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml:10:5-25:19
+MERGED from [com.android.support:appcompat-v7:23.0.1] E:\AndroidStudioWorkPlace\MeiPai\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.0.1] E:\AndroidStudioWorkPlace\MeiPai\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\AndroidManifest.xml:22:5-20
+	android:label
+		ADDED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml:14:9-41
+	android:allowBackup
+		ADDED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml:12:9-35
+	android:icon
+		ADDED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml:13:9-43
+	android:theme
+		ADDED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml:15:9-40
+	android:name
+		ADDED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml:11:9-48
+activity#com.gzw.mp.activities.WelcomeActivity
+ADDED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml:16:9-22:20
+	android:name
+		ADDED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml:16:19-61
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml:17:13-21:29
+action#android.intent.action.MAIN
+ADDED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml:18:17-69
+	android:name
+		ADDED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml:18:25-66
+category#android.intent.category.LAUNCHER
+ADDED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml:20:17-77
+	android:name
+		ADDED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml:20:27-74
+activity#com.gzw.mp.activities.MainActivity
+ADDED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml:23:9-70
+	android:name
+		ADDED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml:23:19-58
+activity#com.gzw.mp.activities.CaptureVideoActivity
+ADDED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml:24:9-78
+	android:name
+		ADDED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml:24:19-66
+uses-sdk
+INJECTED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:appcompat-v7:23.0.1] E:\AndroidStudioWorkPlace\MeiPai\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.0.1] E:\AndroidStudioWorkPlace\MeiPai\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\AndroidManifest.xml:20:5-43
+	android:targetSdkVersion
+		INJECTED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml
+		INJECTED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml
+		INJECTED from E:\AndroidStudioWorkPlace\MeiPai\app\src\main\AndroidManifest.xml

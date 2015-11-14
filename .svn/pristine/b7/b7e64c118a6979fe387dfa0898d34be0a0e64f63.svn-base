@@ -1,0 +1,189 @@
+package com.gzw.mp.activities;
+
+import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.gzw.mp.MyApplication;
+import com.gzw.mp.R;
+import com.gzw.mp.base.BaseActivity;
+import com.gzw.mp.bean.LogInBean;
+import com.gzw.mp.bean.User;
+import com.gzw.mp.callBack.CallString;
+import com.gzw.mp.utils.JsonParser;
+import com.gzw.mp.utils.LogInDialog;
+import com.gzw.mp.utils.NetUtil;
+import com.gzw.mp.utils.SharedPreferenceUtil;
+import com.gzw.mp.utils.UIHelper;
+
+public class PhoneLogInActivity extends BaseActivity {
+
+    //0登陆,1注册第一步
+    private int nextToDoFlag = 0;
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_phone_log_in;
+    }
+
+    @Override
+    public void initView() {
+        //点击 --没有账号注册--则不让提示隐藏
+        TextView tv_noToRegiser = (TextView) findViewById(R.id.log_in_regiser);
+        final Button bt_nextStep = (Button) findViewById(R.id.login_nextstep);
+        final TextView tv_noXieLou = (TextView) findViewById(R.id.log_in_xielou);
+        final LinearLayout ll_forgetOrRegiser = (LinearLayout) findViewById(R.id.log_in_forgetorregiser);
+        final TextView tv_title = (TextView) findViewById(R.id.log_in_title);
+        tv_noToRegiser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tv_noXieLou.setVisibility(View.VISIBLE);
+                ll_forgetOrRegiser.setVisibility(View.GONE);
+                bt_nextStep.setText("下一步");
+                tv_title.setText("设置账号密码1/3");
+            }
+        });
+
+        //输入框内容变化的监听---下一步按钮状态的改变
+        final EditText et_phone = (EditText) findViewById(R.id.login_et_phone);
+        final EditText et_pwd = (EditText) findViewById(R.id.lonin_et_pwd);
+
+        et_phone.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String pwd = et_pwd.getText().toString().trim();
+                if (!pwd.equals("") && s.length() != 0) {
+                    bt_nextStep.setEnabled(true);
+                } else {
+                    bt_nextStep.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        et_pwd.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String phone = et_phone.getText().toString();
+                Log.i("=count=", "=count=" + count + "=s=" + s + "=start=" + start + "=befre=" + before);
+                if (!phone.equals("") && s.length() != 0) {
+                    //下一步--按钮变色
+                    bt_nextStep.setEnabled(true);
+                } else {
+                    bt_nextStep.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        //登陆按钮的监听
+        bt_nextStep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String phoneNumber = et_phone.getText().toString().trim();
+                String pwd = et_pwd.getText().toString().trim();
+                if (!NetUtil.isNetWork()) {
+                    bt_nextStep.setEnabled(false);
+                    et_pwd.setText("");
+                }
+                Log.i("=onClick=", "=onClick=");
+                if (nextToDoFlag == 0) {
+                    Log.i("=onClick=if=data=", "=onClick=if=data=");
+                    UIHelper.Login(phoneNumber, pwd, new CallString() {
+                        @Override
+                        public void getString(String data) {
+                            Log.i("=data=", data + "==");
+                            nextToDo(data);
+                        }
+                    });
+                } else if (nextToDoFlag == 1) {
+                } else if (nextToDoFlag == 2) {
+                } else if (nextToDoFlag == 3) {
+                }
+            }
+        });
+    }
+
+    /*
+      *接收消息显示对话框
+     */
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (msg.what == 0) {
+                Log.i("=handler=", msg.obj.toString() + "==");
+                LogInDialog.errorDialog(PhoneLogInActivity.this, msg.obj.toString());
+            } else if (msg.what == 1) {
+                Intent intent=new Intent(PhoneLogInActivity.this,MainActivity.class);
+                User user= (User) msg.obj;
+                intent.putExtra("user",user);
+                intent.putExtra("activity","PhoneLogInActivity");
+                startActivity(intent);
+            }
+        }
+    };
+
+    /*nextToDoFlag == 0
+     *接收消息显示对话框
+     * 点击下一步按钮后  需要做什么
+     */
+    public void nextToDo(String data) {
+        Message msg = Message.obtain();
+        Log.i("=nextToDo=", "====");
+        //登陆不成功
+        if (data.startsWith(": {\"access_token\"")) {
+            JSONObject errorObject = JSON.parseObject(data);
+            String errorReason = errorObject.getString("error");
+            msg.what = 0;//标记登陆不成功
+            msg.obj = errorReason;
+        } //登陆成功
+        else {
+            Log.i("=handler=", "=: {\"access_token\"=");
+            LogInBean logInBean = JsonParser.getLogInInfo(data);
+            User user = logInBean.getUser();
+            String id = user.getId();
+            String access_token = logInBean.getAccess_token();
+            SharedPreferenceUtil.writeString(this, "access_token", access_token);
+            SharedPreferenceUtil.writeString(this, "id", id);
+            //改变登陆标记
+            MyApplication.loginFlag=true;
+            SharedPreferenceUtil.writeString(this,"loginFlag","false");
+            msg.what = 1;//标记登陆不成功
+            msg.obj = user;
+            Log.i("=handler=", msg.obj.toString() + "==");
+        }
+        handler.sendMessage(msg);
+    }
+
+    @Override
+    public void initAction() {
+        // APIUtils.getSMSUrl
+    }
+}

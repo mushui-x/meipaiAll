@@ -1,0 +1,662 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_me"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/user_me"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="我"
+        android:textColor="@color/user_me_color"
+        android:textSize="20sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/user_scrollview">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- 登陆-->
+            <RelativeLayout
+                android:id="@+id/user__rl_login"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/user_selcoter"
+                android:clickable="true"
+                android:focusable="true">
+
+                <com.gzw.mp.view.RoundImageView
+                    android:id="@+id/iv_user"
+                    android:layout_width="68dp"
+                    android:layout_height="68dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/icon_avatar_large" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_toRightOf="@+id/iv_user"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_user_sign"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1.5"
+                        android:gravity="center"
+                        android:text="未登录"
+                        android:textColor="@color/user_textcolor"
+                        android:textSize="17sp" />
+
+                    <TextView
+                        android:id="@+id/user_login_tosee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="top"
+                        android:text="立即登录看看我的主页"
+                        android:textColor="@color/user_smalltextcolor"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <!--个人美拍信息,美拍,转发,关注,粉丝-->
+            <LinearLayout
+                android:id="@+id/user_ll_info"
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/user_selcoter_false"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:id="@+id/user_info_camera_count"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/user_selcoter"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/user_tv_videos_count"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="2"
+                        android:textColor="@color/user_textcolor" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="美拍"
+                        android:textColor="@color/user_smalltextcolor" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/line" />
+
+                <LinearLayout
+                    android:id="@+id/user_info_zhuanfa_ount"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/user_selcoter"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/user_tv_transpond_count"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="2"
+                        android:textColor="@color/user_textcolor" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="转发"
+                        android:textColor="@color/user_smalltextcolor" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/line" />
+
+                <LinearLayout
+                    android:id="@+id/user_info_focus_count"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/user_selcoter"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/user_tv_focus_count"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="2"
+                        android:textColor="@color/user_textcolor" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="关注"
+                        android:textColor="@color/user_smalltextcolor" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/line" />
+
+                <LinearLayout
+                    android:id="@+id/user_info_fensi_count"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/user_selcoter"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/user_tv_followers_count"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="2"
+                        android:textColor="@color/user_textcolor" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="粉丝"
+                        android:textColor="@color/user_smalltextcolor" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <!--赞,@我的 ,评论,私信-->
+            <LinearLayout
+                android:id="@+id/user_ll_aboutme"
+                android:layout_width="match_parent"
+                android:layout_height="95dp"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="47dp">
+
+                    <!--赞-->
+                    <LinearLayout
+                        android:id="@+id/user_ll_be_liked_count"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="0.5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/user_selcoter"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="8dp"
+                            android:src="@drawable/ic_like" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_weight="7"
+                            android:gravity="left|center"
+                            android:src="@drawable/ic_comment"
+                            android:text="赞"
+                            android:textColor="@color/user_textcolor"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/user_tv_be_liked_count"
+                            android:layout_width="19dp"
+                            android:layout_height="19dp"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/red_count_bg"
+                            android:gravity="top|center_horizontal"
+                            android:textColor="@color/user_textcolor"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <!--@我的-->
+                    <LinearLayout
+                        android:id="@+id/user_ll_be_at_count"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="0.5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/user_selcoter"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="8dp"
+                            android:src="@drawable/ic_me" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_weight="7"
+                            android:gravity="left|center"
+                            android:src="@drawable/ic_comment"
+                            android:text="\@我的"
+                            android:textColor="@color/user_textcolor"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/user_tv_be_at_count"
+                            android:layout_width="19dp"
+                            android:layout_height="19dp"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/red_count_bg"
+                            android:gravity="top|center_horizontal"
+                            android:textColor="@color/user_textcolor"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="47dp"
+                    android:layout_marginTop="1dp">
+
+                    <!--评论-->
+                    <LinearLayout
+                        android:id="@+id/user_ll_be_comment_count"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="0.5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/user_selcoter"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="8dp"
+                            android:src="@drawable/ic_comment" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_weight="7"
+                            android:gravity="left|center"
+                            android:src="@drawable/ic_comment"
+                            android:text="评论"
+                            android:textColor="@color/user_textcolor"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/user_tv_be_comment_count"
+                            android:layout_width="19dp"
+                            android:layout_height="19dp"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/red_count_bg"
+                            android:gravity="top|center_horizontal"
+                            android:textColor="@color/user_textcolor"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <!--私信-->
+                    <LinearLayout
+                        android:id="@+id/user_ll_privatemsg_count"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="0.5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/user_selcoter"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="8dp"
+                            android:src="@drawable/ic_im" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_weight="7"
+                            android:gravity="left|center"
+                            android:src="@drawable/ic_comment"
+                            android:text="私信"
+                            android:textColor="@color/user_textcolor"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/user_tv_privatemsg_count"
+                            android:layout_width="19dp"
+                            android:layout_height="19dp"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/red_count_bg"
+                            android:gravity="top|center_horizontal"
+                            android:textColor="@color/user_textcolor"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+            <!-- 草稿箱-->
+            <LinearLayout
+                android:id="@+id/user__ll_draft"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/user_selcoter"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/ic_draft_play" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="100dp"
+                    android:layout_weight="7"
+                    android:gravity="center_vertical"
+                    android:text="草稿箱"
+                    android:textColor="@color/user_textcolor"
+                    android:textSize="17sp" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="3"
+                    android:src="@drawable/icon_left_cell_arrow" />
+            </LinearLayout>
+
+            <!-- 找好友-->
+            <LinearLayout
+                android:id="@+id/user__ll_findfrend"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/user_selcoter"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/ic_find_friends" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="100dp"
+                    android:layout_weight="7"
+                    android:gravity="center_vertical"
+                    android:text="找好友"
+                    android:textColor="@color/user_textcolor"
+                    android:textSize="17sp" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="3"
+                    android:src="@drawable/icon_left_cell_arrow" />
+            </LinearLayout>
+
+            <!-- 你可能想关注的人-->
+            <LinearLayout
+                android:id="@+id/user__ll_mapattention"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/user_selcoter"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/ic_draft_play" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="100dp"
+                    android:layout_weight="7"
+                    android:gravity="center_vertical"
+                    android:text="你可能想关注的人"
+                    android:textColor="@color/user_textcolor"
+                    android:textSize="17sp" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="3"
+                    android:src="@drawable/icon_left_cell_arrow" />
+            </LinearLayout>
+
+            <!-- 让视频更好玩-->
+            <LinearLayout
+                android:id="@+id/user__ll_player"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/user_selcoter"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/icon_video_morefun" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="100dp"
+                    android:layout_weight="7"
+                    android:gravity="center_vertical"
+                    android:text="让视频更好玩"
+                    android:textColor="@color/user_textcolor"
+                    android:textSize="17sp" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="3"
+                    android:src="@drawable/icon_left_cell_arrow" />
+            </LinearLayout>
+
+            <!-- 美拍小技巧-->
+            <LinearLayout
+                android:id="@+id/user__ll_skills"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/user_selcoter"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/ic_draft_play" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="100dp"
+                    android:layout_weight="7"
+                    android:gravity="center_vertical"
+                    android:text="美拍小技巧"
+                    android:textColor="@color/user_textcolor"
+                    android:textSize="17sp" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="3"
+                    android:src="@drawable/icon_left_cell_arrow" />
+            </LinearLayout>
+
+            <!-- 设置-->
+            <LinearLayout
+                android:id="@+id/user__ll_setting"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/user_selcoter"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_draft_play" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="100dp"
+                    android:layout_weight="7"
+                    android:gravity="center_vertical"
+                    android:text="设置"
+                    android:textColor="@color/user_textcolor"
+                    android:textSize="17sp" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="3"
+                    android:src="@drawable/icon_left_cell_arrow" />
+            </LinearLayout>
+
+            <!-- 广告-->
+            <ImageView
+                android:id="@+id/user_iv_ad"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="30dp"
+                android:scaleType="fitStart"
+                android:src="@drawable/user_ad" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
+
+

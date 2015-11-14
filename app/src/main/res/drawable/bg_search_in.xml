@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape>
+            <corners android:radius="@dimen/search_in_corner_radius" />
+            <solid android:color="@color/lightgray"/>
+        </shape>
+    </item>
+
+
+</selector>

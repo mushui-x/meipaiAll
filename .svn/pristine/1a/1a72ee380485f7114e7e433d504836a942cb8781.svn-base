@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/capture_top" />
+
+    <SurfaceView
+        android:id="@+id/capture_video_sfv"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:background="@color/gray" />
+
+    <include
+        android:id="@+id/capture_video"
+        layout="@layout/capture_video" />
+
+    <include
+        android:id="@+id/capture_picture"
+        layout="@layout/capture_picture"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/capture_longvideo"
+        layout="@layout/capture_longvideo"
+        android:visibility="gone" />
+</LinearLayout>

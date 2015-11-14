@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <RelativeLayout
+        android:background="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_category_height">
+        <ImageView
+            android:id="@+id/top_grid"
+            android:layout_width="@dimen/top_grid_height"
+            android:layout_height="@dimen/top_grid_height"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin_right"
+            android:src="@drawable/ic_grid_normal"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/top_category_height"
+            android:layout_marginRight="@dimen/top_category_marginright"
+            android:orientation="horizontal">
+            <com.gzw.mp.view.HomeTabIndicator
+                android:id="@+id/home_tab_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/top_category_height"
+                android:padding="6dp"
+                android:paddingRight="6dp"
+                android:clipToPadding="false"
+                >
+            </com.gzw.mp.view.HomeTabIndicator>
+
+        </LinearLayout>
+    </RelativeLayout>
+    <android.support.v4.view.ViewPager
+        android:layout_weight="1"
+        android:id="@+id/home_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v4.view.ViewPager>
+
+
+</LinearLayout>

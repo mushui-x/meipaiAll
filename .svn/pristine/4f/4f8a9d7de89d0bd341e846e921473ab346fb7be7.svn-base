@@ -1,0 +1,42 @@
+package com.gzw.mp.utils;
+
+import android.content.Context;
+import android.widget.Toast;
+
+import com.gzw.mp.MyApplication;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
+
+
+/**
+ * coder by 背离记 on 2015/11/3.
+ */
+public class UIHelper {
+
+    /**通过线程池方式实现获取String类型数据
+     * @param url 地址
+     * @param requestCallBack 收到数据之后的监听对象
+     */
+    public static void getStringFromNet(final String url, final RequestCallBack<String> requestCallBack) {
+        Runnable runnable =new Runnable() {
+            @Override
+            public void run() {
+                HttpUtils httpUtils = new HttpUtils();
+                httpUtils.send(HttpRequest.HttpMethod.GET, url, requestCallBack);
+            }
+        };
+        ThreadPoolUtil.addThread(runnable);
+    }
+
+
+    public static void ToastUtil(Context context, String msg) {
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    public static void ToastUtil(String msg) {
+        Toast.makeText(MyApplication.getInstance(), msg, Toast.LENGTH_SHORT).show();
+    }
+
+
+}

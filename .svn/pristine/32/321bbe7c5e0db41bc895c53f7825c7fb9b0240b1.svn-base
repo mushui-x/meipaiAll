@@ -1,0 +1,97 @@
+package com.gzw.mp;
+
+import android.app.Activity;
+import android.app.Application;
+
+import com.gzw.mp.utils.LogUtil;
+
+import java.util.Stack;
+
+/**
+ * coder by 背离记 on 2015/11/3.
+ */
+public class MyApplication extends Application {
+    String TAG = "MyApplication";
+
+    private static Stack<Activity> activityStack;
+    private static MyApplication singleton;
+
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        singleton = this;
+    }
+
+    public static MyApplication getInstance() {
+        return singleton;
+    }
+
+    /**
+     * 把Activity添加到栈中
+     *
+     * @param activity
+     */
+    public void addActivity(Activity activity) {
+        if (activityStack == null) {
+            activityStack = new Stack<>();
+        }
+        activityStack.add(activity);
+        LogUtil.i(TAG, "当前回退栈的Activity数量:"+activityStack.size());
+    }
+
+    /**
+     * 当前Activity
+     *
+     * @return
+     */
+    public Activity currentActivity() {
+        Activity activity = activityStack.lastElement();
+        return activity;
+    }
+
+
+    public void finishCurrentActivity() {
+        Activity activity = activityStack.lastElement();
+        finishActivity(activity);
+    }
+
+    /**
+     * 结束指定的Activity
+     *
+     * @param activity
+     */
+    public void finishActivity(Activity activity) {
+        if (activity != null) {
+            activityStack.remove(activity);
+            activity.finish();
+            activity = null;
+        }
+    }
+
+    public void finishActivity(Class<?> cls) {
+        for (Activity activity : activityStack) {
+            if (activity.getClass().equals(cls)) {
+                finishActivity(activity);
+            }
+        }
+    }
+
+    public void finishAllActivity() {
+        for (int i = 0, size = activityStack.size(); i < size; i++) {
+            if (null != activityStack.get(i)) {
+                activityStack.get(i).finish();
+            }
+        }
+        activityStack.clear();
+    }
+
+    public void ExitApp() {
+        try {
+            finishAllActivity();
+        } catch (Exception e) {
+
+        }
+    }
+
+}

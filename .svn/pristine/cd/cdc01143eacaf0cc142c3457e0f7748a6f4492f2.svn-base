@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">美拍</string>
+
+    <string name="top_hot">热门</string>
+    <string name="top_funny">搞笑</string>
+    <string name="top_dance">舞蹈</string>
+    <string name="top_girls">女神</string>
+    <string name="top_music">音乐</string>
+    <string name="top_manga">二次元</string>
+    <string name="top_food">美食</string>
+    <string name="top_fashion">美装时尚</string>
+    <string name="top_star">明星名人</string>
+    <string name="top_baby">宝宝</string>
+    <string name="top_travel">旅行</string>
+    <string name="top_doubi">逗比</string>
+    <string name="top_konw">涨姿势</string>
+    <string name="top_pets">宠物乐园</string>
+    <string name="top_boys">美神</string>
+</resources>

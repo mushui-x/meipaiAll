@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">美拍</string>
+
+    <string name="top_hot">热门</string>
+    <string name="top_funny">搞笑</string>
+    <string name="top_dance">舞蹈</string>
+    <string name="top_girls">女神</string>
+    <string name="top_music">音乐</string>
+    <string name="top_manga">二次元</string>
+    <string name="top_food">美食</string>
+    <string name="top_fashion">美装时尚</string>
+    <string name="top_star">明星名人</string>
+    <string name="top_baby">宝宝</string>
+    <string name="top_travel">旅行</string>
+    <string name="top_doubi">逗比</string>
+    <string name="top_konw">涨姿势</string>
+    <string name="top_pets">宠物乐园</string>
+    <string name="top_boys">美神</string>
+
+    <string name="text_search_flag">大家都在搜:</string>
+
+    <string name="new_user_come">新用户注册</string>
+
+
+    <!--登陆错误提醒-->
+    <string name="log_in_error_phone_error">手机格式输入错误，请重新输入！</string>
+    <string name="log_in_error_pwd_error">密码错误,请重试</string>
+    <string name="log_in_error_phone_no_regiser">大家都在搜:</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+</resources>

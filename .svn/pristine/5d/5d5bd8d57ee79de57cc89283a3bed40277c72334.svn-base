@@ -1,0 +1,19 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="category_tab_text">15.0sp</dimen>
+    <dimen name="top_category_height">40.0dip</dimen>
+    <dimen name="top_grid_height">25.0dip</dimen>
+    <dimen name="top_category_marginright">35dp</dimen>
+    <dimen name="margin_right">10dp</dimen>
+
+    <dimen name="search_out">50dp</dimen>
+    <dimen name="search_in_margin_h">10dp</dimen>
+    <dimen name="search_in_margin_v">10dp</dimen>
+    <dimen name="search_in_corner_radius">5dp</dimen>
+    <dimen name="search_in_text_flag_margin_left">5dp</dimen>
+
+    <dimen name="video_single_show_user_avatar_bg_radius">20dp</dimen>
+</resources>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/error_dialog_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:background="@drawable/error_dialog_bg"
+        android:paddingTop="23dp"
+        android:paddingBottom="23dp"
+        android:gravity="center"
+        android:text="密码或账号错误"
+        android:textColor="@color/login_country"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/bg_set_cover" />
+
+    <Button
+        android:id="@+id/error_dialog_bt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/error_dialog_bt_sue_bg"
+        android:textColor="@drawable/error_dialog_bt_sure_textcolor"
+        android:gravity="center"
+        android:text="确定"
+        android:textSize="20sp" />
+</LinearLayout>

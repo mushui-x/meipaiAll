@@ -1,0 +1,105 @@
+package com.gzw.mp.fragments;
+
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.gzw.mp.R;
+import com.gzw.mp.base.BaseFragment;
+import com.gzw.mp.bean.ChnnelBean;
+import com.gzw.mp.view.HomeTabIndicator;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class HomeFragment extends BaseFragment {
+
+    private HomeTabIndicator tabIndicator;
+    private ViewPager viewpager;
+    private MyPagerAdapter adapter;
+    private List<String> category = new ArrayList<String>();
+
+    private Handler mHandler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            category=(List<String>)msg.obj;
+            category.add(getString(R.string.top_funny));
+            adapter = new MyPagerAdapter(getFragmentManager());
+            viewpager.setAdapter(adapter);
+            tabIndicator.setViewPager(viewpager);
+        }
+    };
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        tabIndicator = ((HomeTabIndicator) view.findViewById(R.id.home_tab_indicator));
+        viewpager = ((ViewPager) view.findViewById(R.id.home_viewpager));
+        initView();
+        return view;
+    }
+
+    protected void initView(){
+        int i = 0;
+        new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                for (int i=0;i<15;i++){
+                    category.add(ChnnelBean.getChnnel().get(i).getChnnelTitle());
+                }
+                Message msg=new Message();
+                msg.what=1;
+                msg.obj=category;
+                mHandler.sendMessage(msg);
+            }
+        }.start();
+    }
+
+    @Override
+    protected void initAction() {
+
+    }
+
+    @Override
+    public int getViewId() {
+        return 0;
+    }
+
+    /**
+     * FragmentPagerAdapter
+     */
+    public class MyPagerAdapter extends FragmentPagerAdapter {
+
+        public MyPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return category.get(position);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return HomeTabFragment.newInstance(position);
+        }
+
+        @Override
+        public int getCount() {
+            return category.size();
+        }
+    }
+}

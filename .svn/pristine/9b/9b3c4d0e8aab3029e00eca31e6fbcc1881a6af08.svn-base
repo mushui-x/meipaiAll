@@ -1,0 +1,54 @@
+package com.gzw.mp.activities;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
+
+
+import com.gzw.mp.R;
+import com.gzw.mp.base.BaseActivity;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class WelcomeActivity extends BaseActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_welcome;
+    }
+
+    @Override
+    public void initView() {
+
+    }
+
+    @Override
+    public void initAction() {
+        toNextActivity();
+    }
+
+    //欢迎页面跳转
+    private void toNextActivity() {
+        //定时任务
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
+                intent.putExtra("activity","WelcomeActivity");
+                startActivity(intent);
+                finish();
+            }
+        };
+        //执行定时任务
+        new Timer().schedule(task, 100);
+    }
+}

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--播放窗口-->
+    <SurfaceView
+        android:id="@+id/video_surfaceview"
+        android:layout_width="match_parent"
+        android:layout_height="300dp" />
+
+    <ProgressBar
+        android:id="@+id/videoloading_progressbar"
+        style="@style/progressbar_loading_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="110dp" />
+
+    <ImageView
+        android:id="@+id/play_video"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="110dp"
+        android:src="@drawable/ic_media_play_a" />
+
+    <RelativeLayout
+        android:id="@+id/video_control_layout"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="270dp">
+
+        <SeekBar
+            android:id="@+id/video_seekbar"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:maxHeight="2dip"
+            android:minHeight="2dip"
+            android:progressDrawable="@drawable/seek_drawable"
+            android:thumb="@drawable/seek_thumb" />
+
+        <TextView
+            android:id="@+id/hasplay_time"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/video_seekbar"
+            android:gravity="center"
+            android:text="test"
+            android:textColor="@color/deeppink" />
+
+        <TextView
+            android:id="@+id/total_time"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/video_seekbar"
+            android:gravity="center"
+            android:text="test"
+            android:textColor="@color/deeppink" />
+    </RelativeLayout>
+
+</FrameLayout>

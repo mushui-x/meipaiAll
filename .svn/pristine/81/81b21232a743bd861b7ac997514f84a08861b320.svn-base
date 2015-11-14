@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp">
+
+    <!--视频播放界面上边的工具栏  包含了用户头像 用户名 拍摄时间 播放量等信息-->
+    <FrameLayout
+        android:id="@+id/video_info"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp">
+
+        <com.gzw.mp.view.RoundImageView
+            android:id="@+id/user_avatar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_emotag_default_user_head" />
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginLeft="45dp"
+            android:gravity="center_vertical"
+            android:text="美拍小美"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/video_create_time"
+            android:layout_width="60dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="25dp"
+            android:text="11-12 10:35"
+            android:textColor="@color/gray"
+            android:textSize="10sp" />
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="105dp"
+            android:layout_marginTop="23dp"
+            android:src="@drawable/icon_playcount_media" />
+
+        <TextView
+            android:id="@+id/video_play_count"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginLeft="125dp"
+            android:layout_marginTop="25dp"
+            android:text="10010播放"
+            android:textColor="@color/gray"
+            android:textSize="10sp" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/follow_menu_selector"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:src="@drawable/ic_follow_a" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="关注"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+    <!--弹幕按钮-->
+    <FrameLayout
+        android:id="@+id/danmu_menu"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="90dp"
+        android:background="@drawable/danmu_menu_selector">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="弹幕"
+            android:textColor="@color/gray"
+            android:gravity="center"/>
+
+    </FrameLayout>
+
+
+
+</RelativeLayout>

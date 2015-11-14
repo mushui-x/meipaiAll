@@ -1,0 +1,62 @@
+package com.gzw.mp.utils;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.gzw.mp.bean.TimeLineBean;
+import com.gzw.mp.bean.TopUsersBean;
+import com.gzw.mp.bean.TopVideoBean;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * coder by 背离记 on 2015/11/10.
+ */
+public class JsonParser {
+    public static final String TAG="JsonParser";
+
+    /**解析TimeLine的视频集合json数据
+     * @param json 要解析的数据
+     * @return 数据集合，包括media和user
+     */
+    public static List<TimeLineBean> getTimeLine(String json){
+        List<TimeLineBean> list = new ArrayList<>();
+        try {
+            list = JSON.parseArray(json, TimeLineBean.class);
+        }catch (Exception e){
+        LogUtil.i(TAG,e.toString());
+        }
+        return list;
+    }
+
+    /**解析排行榜用户
+     * @param json 要解析的数据
+     * @return 排行榜用户集合
+     */
+    public static List<TopUsersBean> getTopUser(String json){
+        List<TopUsersBean> list = new ArrayList<>();
+        try{
+            JSONObject jo = JSON.parseObject(json);
+            list= JSON.parseArray(jo.getJSONArray("rank_list").toString(),TopUsersBean.class);
+        }catch (Exception e){
+            LogUtil.i(TAG,e.toString());
+        }
+    return list;
+    }
+
+    /**解析视频排行榜
+     * @param json 要解析的数据
+     * @return 视频排行榜集合
+     */
+    public static List<TopVideoBean> getTopVideo(String json){
+        List<TopVideoBean> list = new ArrayList<>();
+        try {
+            list= JSON.parseArray(json,TopVideoBean.class);
+            LogUtil.i(TAG, list.size());
+        }catch (Exception e){
+            LogUtil.i(TAG,e.toString());
+        }
+        return list;
+    }
+
+}

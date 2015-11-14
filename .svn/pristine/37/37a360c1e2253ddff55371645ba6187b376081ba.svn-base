@@ -1,0 +1,28 @@
+package com.gzw.mp.activities;
+
+import com.gzw.mp.R;
+import com.gzw.mp.base.BaseActivity;
+
+/**
+ * @author zhangjie
+ *         2015/11/12
+ *         zhangxiaomu.grr@gmail.com
+ *         美拍视频详情页
+ */
+public class MeipaiDetailActivity extends BaseActivity {
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_meipaidetail;
+    }
+
+    @Override
+    public void initView() {
+
+    }
+
+    @Override
+    public void initAction() {
+
+    }
+}

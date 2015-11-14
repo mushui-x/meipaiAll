@@ -1,0 +1,171 @@
+package com.gzw.mp.utils;
+
+import android.content.Context;
+import android.widget.Toast;
+
+import com.gzw.mp.MyApplication;
+import com.gzw.mp.callBack.CallString;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
+import com.lidroid.xutils.http.client.multipart.HttpMultipartMode;
+import com.lidroid.xutils.http.client.multipart.MultipartEntity;
+import com.lidroid.xutils.http.client.multipart.content.StringBody;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+
+/**
+ * coder by 背离记 on 2015/11/3.
+ */
+public class UIHelper {
+
+<<<<<<< .mine
+    /**
+     * 通过线程池方式实现获取String类型数据
+     *
+     * @param url             地址
+=======
+    private static final String TAG = "UIHelper";
+
+    /**
+     * 通过线程池方式实现获取String类型数据
+     *
+     * @param url             地址
+>>>>>>> .r14
+     * @param requestCallBack 收到数据之后的监听对象
+     */
+<<<<<<< .mine
+    public static void getStringFromNet(final String url, final RequestCallBack<String> requestCallBack) {
+       //限时5s 5s后连接不到网络就发出失败信息
+        HttpUtils httpUtils = new HttpUtils(5000);
+        httpUtils.send(HttpRequest.HttpMethod.GET, url, requestCallBack);
+=======
+    public static String getStringFromNet(final String url, final RequestCallBack<String> requestCallBack) {
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                HttpUtils httpUtils = new HttpUtils();
+                httpUtils.send(HttpRequest.HttpMethod.GET, url, requestCallBack);
+            }
+        };
+        ThreadPoolUtil.addThread(runnable);
+        return url;
+>>>>>>> .r14
+    }
+
+
+    /**
+     * 获取短信验证码，已经在子线程中。n秒后重新发送验证码请重新调用我
+     *
+     * @param phoNum 电话号码
+     * @param pwd    密码
+     * @param call   返回信息的回调结果。
+     *               一切顺利返回的json中包含一个true
+     */
+    public static void getVerifySMS(final String phoNum, final String pwd, final CallString call) {
+        String url = APIUtils.getSMSUrl;
+        MultipartEntity reqEntity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
+        try {
+            reqEntity.addPart("password", new StringBody(pwd));
+            reqEntity.addPart("device_id", new StringBody("864690025974851"));
+            reqEntity.addPart("client_id", new StringBody("1089857302"));
+            reqEntity.addPart("phone", new StringBody(phoNum));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        POST2meiPai(reqEntity, url, call);
+    }
+
+    /**注册方法。
+     * @param phoNum
+     * @param pwd
+     * @param SMSCode 短信验证码
+     * @param call 注册回调接口，字符串包含error证明错误
+     */
+    public static void SignUp(String phoNum,String pwd,String SMSCode,CallString call){
+        String url = APIUtils.SignUpUrl;
+        MultipartEntity reqEntity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
+        try {
+            reqEntity.addPart("password", new StringBody(pwd));
+            reqEntity.addPart("device_id", new StringBody("864690025974851"));
+            reqEntity.addPart("client_id", new StringBody("1089857302"));
+            reqEntity.addPart("phone", new StringBody(phoNum));
+            reqEntity.addPart("client_secret",new StringBody("38e8c5aet76d5c012e32"));
+            reqEntity.addPart("verify_code",new StringBody(SMSCode));
+            reqEntity.addPart("grant_type",new StringBody("phone"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        POST2meiPai(reqEntity,url,call);
+    }
+
+    /**登录方法 返回结果调用JsonPaser解析
+     * @param phoNum
+     * @param pwd
+     * @param call 登录信息回调接口 登录成功返回包含access_token和一个User对象的JSON
+     */
+    public static void Login(String phoNum,String pwd,CallString call){
+    String url = APIUtils.LoginUrl;
+        MultipartEntity reqEntity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
+        try {
+            reqEntity.addPart("password", new StringBody(pwd));
+            reqEntity.addPart("device_id", new StringBody("864690025974851"));
+            reqEntity.addPart("client_id", new StringBody("1089857302"));
+            reqEntity.addPart("phone", new StringBody(phoNum));
+            reqEntity.addPart("client_secret",new StringBody("38e8c5aet76d5c012e32"));
+            reqEntity.addPart("grant_type",new StringBody("phone"));
+            reqEntity.addPart("device_token",new StringBody("5198a1385aa95a5a77660e889df26f11"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        POST2meiPai(reqEntity,url,call);
+    }
+
+
+    /** 发送POST请求的真正工作者.
+     * @param reqEntity
+     * @param url
+     * @param call
+     */
+    private static void POST2meiPai(final MultipartEntity reqEntity, final String url, final CallString call) {
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                HttpClient httpClient = new DefaultHttpClient();
+                HttpPost post = new HttpPost(url);
+                post.setEntity(reqEntity);
+                try {
+                    HttpResponse response = httpClient.execute(post);
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
+                    String sResponse;
+                    StringBuilder s = new StringBuilder();
+                    while ((sResponse = reader.readLine()) != null) {
+                        s = s.append(sResponse);
+                    }
+                    call.getString(s.toString());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        ThreadPoolUtil.addThread(runnable);
+    }
+
+
+    public static void ToastUtil(Context context, String msg) {
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    public static void ToastUtil(String msg) {
+        Toast.makeText(MyApplication.getInstance(), msg, Toast.LENGTH_SHORT).show();
+    }
+
+
+}

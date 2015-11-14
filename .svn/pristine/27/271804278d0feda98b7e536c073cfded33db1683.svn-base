@@ -1,0 +1,24 @@
+package com.gzw.mp.fragments.logInRegisterFragment;
+
+import com.gzw.mp.R;
+import com.gzw.mp.base.BaseFragment;
+
+
+public class RegisterFragmentThird extends BaseFragment {
+
+
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void initAction() {
+
+    }
+
+    @Override
+    public int getViewId() {
+        return R.layout.fragment_register_third;
+    }
+}

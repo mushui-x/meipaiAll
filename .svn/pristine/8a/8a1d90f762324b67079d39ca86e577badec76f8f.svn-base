@@ -1,0 +1,21 @@
+package com.gzw.mp.fragments;
+
+import com.gzw.mp.base.BaseFragment;
+
+public class UserFragment extends BaseFragment {
+
+	@Override
+	protected void initView() {
+
+	}
+
+	@Override
+	protected void initAction() {
+
+	}
+
+	@Override
+	public int getViewId() {
+		return 0;
+	}
+}

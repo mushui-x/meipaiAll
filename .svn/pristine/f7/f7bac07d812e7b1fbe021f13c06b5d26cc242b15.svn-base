@@ -1,0 +1,113 @@
+package com.gzw.mp.utils;
+
+/**
+ * API工具类 本类只返回根据输入的参数拼装好的JSON【链接】，
+ * coder by 背离记 on 2015/11/9.
+ */
+public class APIUtils {
+    //电脑浏览器测试不加from，不加EndCache也能正常运行。
+    private static String Host="https://newapi.meipai.com";
+    private static String EndCache="&language=zh-Hans&client_id=1089857302&device_id=864690025974851&version=4100&channel=brandlinkside&model=MI+3W&locale=1&sig=52b427a9492722b123eadbbde8a8d8c7&sigVersion=1.0";
+
+    /**
+     * 根据视频ID获取视频播放页的详细信息
+     * @param videoId 视频ID
+     * @return 视频播放页链接
+     */
+    public static String getVideoInfoLink(String videoId){
+    return SpliceLink("/medias/show.json?id=",videoId);
+    }
+
+    /**
+     * 获得与当前视频相关的推荐
+     * @param VideoId 当前视频ID
+     * @return 推荐视频链接
+     */
+    public static String getRelativeVideoLink(String VideoId){
+        return SpliceLink("/suggestions/medias_by_id.json?id=",VideoId);
+    }
+
+    /**
+     * 获取当前视频的评论和热评链接
+     * @param VideoId 当前视频ID
+     * @param page 当前页码
+     * @return 评论链接
+     */
+    public static String getCommentLink(String VideoId,int page){
+        return SpliceLink("/comments/show.json?id=",VideoId)+"&page="+page;
+    }
+
+
+    /**根据频道ID获取横幅图片广告图片
+     * @param ChnnelId 频道ID
+     * @return 广告图片Link
+     */
+    public static String getImageADsLink(String ChnnelId){
+        return "https://newapi.meipai.com/channels/show.json?id="+ChnnelId;
+    }
+
+
+    /** 根据关键字返回搜索结果，可自定义每页搜索结果
+     * @param keyWord 关键字
+     * @param page 页码
+     * @param count 每页的条目
+     * @return 搜索结果链接
+     */
+    public static String getSearceLinkWithCount(String keyWord,int page,int count){
+        return "https://newapi.meipai.com/search/user_mv.json?count="+count+"&page="+page+"&type=0&q="+keyWord;
+    }
+
+    /**根据关键字返回搜索结果链接，本函数为默认值，每页20条结果
+     * 自定义每页条目使用getSearceLinkWithCount
+     * @param keyWord 关键字
+     * @param page 当前页码
+     * @return 搜索结果Link
+     */
+    public static String getSearceLink(String keyWord,int page){
+        return "https://newapi.meipai.com/search/user_mv.json?count=20&page="+page+"&type=0&q="+keyWord;
+    }
+
+    /**根据输入的关键字获取推荐搜索关键字，自动填充
+     * @param text 输入的关键字
+     * @return 推荐关键字链接
+     */
+    public static String getRelativeSearchLink(String text){
+        return SpliceLink("/search/word_assoc.json?q=",text);
+    }
+
+    /**根据频道ID拼装频道链接
+     * @param ChnnelId 频道ID
+     * @param page 当前页码
+     * @return 获取每个频道的默认视频（进去该频道看到的视频链接）
+     */
+    public static String getTimeLineLinkById(String ChnnelId,int page){
+        return "https://newapi.meipai.com/channels/feed_timeline.json?id="+ChnnelId+"&feature=new&page="+page;
+    }
+
+    /**根据频道ID获取频道热门用户排行榜，id!=1,热门频道没有用户排行榜（其他频道请加非空判断）
+     * @param ChnnelId 频道ID
+     * @return 用户排行榜链接
+     */
+    public static String getTop50UsersLinkById(String ChnnelId){
+        return "https://newapi.meipai.com/rank/users.json?id="+ChnnelId;
+    }
+
+    /**根据频道ID获取热门排行榜视频
+     * @param ChnnelId 频道ID
+     * @return 热门视频排行榜link
+     */
+    public static String getTopVideoLink(String ChnnelId){
+        return "https://newapi.meipai.com/rank/medias.json?id="+ChnnelId;
+    }
+
+
+    /**拼接链接的内部方法。
+     * @param param
+     * @param id
+     * @return
+     */
+    private static String SpliceLink(String param,String id){
+        return Host+param+id;
+    }
+
+}

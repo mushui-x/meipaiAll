@@ -1,0 +1,92 @@
+package com.gzw.mp.activities;
+
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.gzw.mp.R;
+import com.gzw.mp.base.BaseActivity;
+
+public class PhoneLogInActivity extends BaseActivity {
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_phone_log_in;
+    }
+
+    @Override
+    public void initView() {
+        //点击 --没有账号注册--则不让提示隐藏
+        TextView tv_noToRegiser = (TextView) findViewById(R.id.log_in_regiser);
+        final TextView tv_noXieLou = (TextView) findViewById(R.id.log_in_xielou);
+        final LinearLayout ll_forgetOrRegiser = (LinearLayout) findViewById(R.id.log_in_forgetorregiser);
+        final TextView tv_title = (TextView) findViewById(R.id.log_in_title);
+        tv_noToRegiser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tv_noXieLou.setVisibility(View.VISIBLE);
+                ll_forgetOrRegiser.setVisibility(View.GONE);
+                tv_title.setText("设置账号密码1/3");
+            }
+        });
+
+        //输入框内容变化的监听---下一步按钮状态的改变
+        final EditText et_phone = (EditText) findViewById(R.id.login_et_phone);
+        final EditText et_pwd = (EditText) findViewById(R.id.lonin_et_pwd);
+        final Button bt_nextStep = (Button) findViewById(R.id.login_nextstep);
+        et_phone.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String pwd = et_pwd.getText().toString().trim();
+                if (!pwd.equals("") && s.length() != 0) {
+                    bt_nextStep.setEnabled(true);
+                }else {
+                    bt_nextStep.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        et_pwd.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String phone = et_phone.getText().toString();
+                Log.i("=count=","=count="+count+"=s="+s+"=start="+start+"=befre="+before);
+                if (!phone.equals("") && s.length()!=0) {
+                    //下一步--按钮变色
+                    bt_nextStep.setEnabled(true);
+                } else {
+                    bt_nextStep.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+
+    @Override
+    public void initAction() {
+       // APIUtils.getSMSUrl
+    }
+}

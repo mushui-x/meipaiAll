@@ -1,0 +1,7 @@
+package com.gzw.mp.bean;
+
+/**评论信息
+ * coder by 背离记 on 2015/11/10.
+ */
+public class CommitBean {
+}

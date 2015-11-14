@@ -1,0 +1,15 @@
+package com.gzw.mp.utils;
+
+/**
+ * coder by 背离记 on 2015/11/3.
+ */
+public class Config {
+    /**
+     * 最新话题
+     */
+    public static String NewTopic="new";
+    /**
+     * 最热话题
+     */
+    public static String HotTopic="hot";
+}
